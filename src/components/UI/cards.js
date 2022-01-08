@@ -29,7 +29,7 @@ const useStyles = makeStyles({
 function Cards(props) {
 
     const {data} = props
-    console.log(data)
+    // console.log(data)
     const [open, setOpen] = useState(false);
     // const handleOpen = () => setOpen(true);
     // const handleClose = () => setOpen(false);
@@ -58,7 +58,7 @@ function Cards(props) {
                
 
             </CardActions>
-            {open ? <BasicModal open={open} /> : ''}
+            {open ? <BasicModal open={open} data={data} /> : ''}
         </Card>
     </div>
     )

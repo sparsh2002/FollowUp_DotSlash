@@ -7,7 +7,7 @@ import List from '@material-ui/core/List'
 import ListItem from '@material-ui/core/ListItem'
 import ListItemText from '@material-ui/core/ListItemText'
 import ListItemButton from '@mui/material/ListItemButton';
-
+import firebase from 'firebase'
 const style = {
   position: 'absolute',
   top: '50%',
@@ -20,7 +20,10 @@ const style = {
   p: 4,
 };
 
+
 export default function BasicModal(props) {
+  // console.log(props.data.list.lendData)
+  const lend = props.data.list.lendData
   const [open, setOpen] = React.useState(props.open);
   const {history}=props;
   const handleOpen = () => setOpen(props.open);
@@ -39,17 +42,20 @@ export default function BasicModal(props) {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          {/* <Typography id="modal-modal-title" variant="h6" component="h2">
-            Text in a modal
-          </Typography>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            Duis mollis, est non commodo luctus, nisi erat porttitor ligula. */}
-             <List>
-                    <ListItem onClick={() => { }}>
-                        <ListItemText primary={'Request'} />
+            {
+              lend?.map((res )=><div>
+                <h4>{res.Title}</h4>
+                <p>{res.name}</p>
+                <p>{res.itemCategory}</p>
+                <br />
+              </div>)
+            }
+             {/* <List>
+                    {lend?.map((res) => <ListItem onClick={() => { }}>
+                        <ListItemText primary={res.list.lendData[i]} />
                         <Button variant="contained">View</Button>
-                    </ListItem>
-            </List>
+                    </ListItem>)}
+            </List> */}
           
         </Box>
       </Modal>
