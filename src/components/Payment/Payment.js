@@ -17,6 +17,7 @@ function Payment() {
     const appliedDescription = localStorage.getItem('appliedDescription')
     const applieditemCategory = localStorage.getItem('applieditemCategory')
     const appliedTitle = localStorage.getItem('appliedTitle')
+    const appliedPrice = localStorage.getItem('appliedPrice')
     const userId = localStorage.getItem('userId')
     
 
@@ -88,7 +89,7 @@ function Payment() {
       key: "rzp_test_HAN6gNq5Mqpqwp",
       currency: "INR",
       amount: amount,
-      name: "Sparsh",
+      name: appliedauthorName,
       description: "Thanks for purchasing",
       image:
         "",
@@ -112,7 +113,8 @@ function Payment() {
          <p>Title : {appliedTitle}</p>
          <p>itemCategory: {applieditemCategory}</p>
          <p>Description : {appliedDescription}</p>
-      <Button onClick={() => displayRazorpay(phonePrice)} color="primary">
+         <p>Price: {appliedPrice}</p>
+      <Button onClick={() => displayRazorpay(appliedPrice*100)} color="primary">
         Proceed to Pay
       </Button>
       <h4>First Complete the payment Then Move to the Confirm Order</h4>
