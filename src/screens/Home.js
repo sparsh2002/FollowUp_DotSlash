@@ -4,10 +4,16 @@ import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import Avatar from '@mui/material/Avatar';
-import Form from '../components/Discussions/Form';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import { Typography } from '@mui/material';
+import TextField from '@mui/material/TextField';
+import InputAdornment from '@mui/material/InputAdornment';
+import AccountCircle from '@mui/icons-material/AccountCircle';
+import Input from '@mui/material/Input';
+
+import Form from '../components/Discussions/Form';
+import Comments from '../components/Discussions/Comments';
 
 
 function FetchPrevPosts(){
@@ -45,9 +51,14 @@ function GetData(){
     return data
 }
 
+ 
 
 const Home =  () => {
+    
     const data = FetchPrevPosts()
+    console.log(data)
+
+    
     
     // const userData = GetData()
     // console.log(userData[0].name)    
@@ -64,20 +75,25 @@ const Home =  () => {
                     data.map((res,i ) => 
                     <Box sx={{ m:3, p:4, border: '2px solid #ccc', borderRadius: '40px' }}>
                     <Stack direction="column" spacing={2} align="left">
+                    
                     <Stack direction="row" spacing={2} style={{ alignItems: 'center'}}>
                     <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
                     <p>{res.name}</p>
                     </Stack>
-                    {res.postType === 'sell' ?
+                    
+                    {
+                    res.postType === 'sell' ?
                     <div style={{ backgroundColor:'red', width:'70px', color:'white', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>For Sale</div> :
                     <div style={{ backgroundColor:'green', width:'70px', color:'white', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>To Lend</div>
 
                     }
                     <h2>{res.Title}</h2>
                     <Typography variant="p">{res.Description}</Typography>
+
                     <div>
                         <img src={res.imageUrl} />
                     </div>
+
                     {
                         res.postType === 'sell' ? <div style={{ display: 'flex' }}>
                             <h3>Sale Price: </h3>
@@ -87,14 +103,21 @@ const Home =  () => {
                             <h4 > {res.duration}</h4>
                         </div> 
                     }
+
                     <div style={{ display: 'flex' }}>
                     <h3>Contact Details: </h3>
                     <h4>&nbsp;&nbsp;+917398816950</h4>
                     </div>
+
                     <div style={{ display: 'flex', justifyContent: 'right'}}>
                     <Button variant="contained" align="right">Apply {res.applicationNumber}</Button>
                     </div>
+                    
+                    <Comments
+                        allComments={res.comments}                   
+                     />
                     </Stack>
+
                     </Box>
                     )
                 ) : " "
