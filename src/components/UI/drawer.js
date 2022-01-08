@@ -24,7 +24,7 @@ const useStyles = makeStyles({
     }
 })
 
-export default function Drawer() {
+export default function Drawer(props) {
     const classes = useStyles();
     const [open, setOpen] = useState(false);
     const [page , setPage] = useState(<Profile />)
@@ -32,7 +32,10 @@ export default function Drawer() {
         setPage(val)
         localStorage.setItem('profilepage' , val )
     }
-
+    function call(x){
+        console.log(x)
+        props.change(x)
+    }
     return (<div >
 
         <span >
@@ -64,20 +67,19 @@ export default function Drawer() {
                 <Divider />
                 <List>
                     <ListItemButton onClick={() => { 
-                        toggelPage('profile')
+                        call('profile')
                     }}>
                         <ListItemText primary={'Profile'} />
                     </ListItemButton>
 
                     <ListItemButton onClick={() => {
-                        toggelPage('lend')
-                        console.log('Lend/Sell')
+                       call('lend')
                          }}>
                         <ListItemText primary={'Lend/Sell'} />
                     </ListItemButton>
 
                     <ListItemButton onClick={() => { 
-                        toggelPage('borrow')
+                        call('borrow')
                     }}>
                         <ListItemText primary={'Borrow/Buy'} />
                     </ListItemButton>
