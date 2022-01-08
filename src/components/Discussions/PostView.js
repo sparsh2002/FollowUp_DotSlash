@@ -1,7 +1,5 @@
 import React ,{useEffect , useState} from 'react'
 import Box from '@mui/material/Box';
-import Paper from '@mui/material/Paper';
-import Grid from '@mui/material/Grid';
 import Avatar from '@mui/material/Avatar';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
@@ -91,7 +89,7 @@ const PostView = (props) => {
                     <Stack direction="column" spacing={1} align="left">
                     
                     <Stack direction="row" spacing={2} style={{ alignItems: 'center'}}>
-                    <Avatar alt="Remy Sharp" src="" />
+                    <Avatar alt="Remy Sharp" src={imagePath} />
                     <p>{props.data.name}</p>
                     </Stack>
                     
@@ -125,11 +123,11 @@ const PostView = (props) => {
 
                     <div style={{ display: 'flex', justifyContent: 'right'}}>
                     {props.data.postType === 'sell' ?
-                    <Button variant="contained" align="right" onClick={() => 
+                    <Button variant="contained" align="right" size="large" onClick={() => 
                         paymentGateway(props.data.postId , props.data.Title , props.data.itemCategory , props.data.name , props.data.Description , props.data.price)
                     }>Buy </Button> :
                     <>
-                    <Button variant="contained" align="right" onClick={() => borrow(props.data.postId , props.data.Title , props.data.itemCategory , props.data.name , props.data.Description)}>Apply </Button>
+                    <Button variant="contained" align="right" size="large" onClick={() => borrow(props.data.postId , props.data.Title , props.data.itemCategory , props.data.name , props.data.Description)}>Apply </Button>
                     
                     </>
                     }

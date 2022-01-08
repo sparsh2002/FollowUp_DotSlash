@@ -4,6 +4,7 @@ import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Divider from '@mui/material/Divider';
 import Avatar from '@mui/material/Avatar';
+import rene from '../../assets/images/rene.jpg'
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import { Button, Container, Grid, Typography } from '@material-ui/core'
@@ -105,16 +106,16 @@ const Profile = () => {
 
                
 
-            <Avatar sx={{ height: '100px', width: '100px' }} style={{marginLeft:"15px", marginTop:"15px"}} />
+            <Avatar sx={{ height: '100px', width: '100px' }} style={{marginLeft:"15px", marginTop:"15px"}} src={rene}/>
             <p className={classes.textCenter}><b>{userData?  userData[0]?.name : " "}</b><br />{userData?  userData[0]?.email : " "}</p>
 
             </Grid>
             <Button color="primary" variant='contained' size='small' >Edit Profile</Button>
             <Grid item direction="column">
-                <p className={classes.text}><b>InfoName</b><br />Info</p>
-                <p className={classes.text}><b>InfoName</b><br />Info</p>
+                <p className={classes.text}><b>Gender</b><br />Male</p>
+                <p className={classes.text}><b>Phone No.</b><br />+91 9415094687</p>
             
-                <p className={classes.text}><b>InfoName</b><br />Info</p>
+                <p className={classes.text}><b>Roll No.</b><br />UI20CS51</p>
                
             </Grid>
             </Grid>

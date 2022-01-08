@@ -12,6 +12,7 @@ import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
+import rene from '../../assets/images/rene.jpg'
 import Select from '@mui/material/Select';
 import { useTheme } from '@mui/material/styles';
 import OutlinedInput from '@mui/material/OutlinedInput';
@@ -194,8 +195,8 @@ const Form = () => {
                 <Paper sx={{ p:3, boxShadow:2, width:'80%'}} >
                 <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                 <Stack direction="row" spacing={2}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" sx={{width:56,height:56 }} />
-                <h2 style={{marginTop:"10px"}}>Name</h2>
+                <Avatar alt="Remy Sharp" src={rene} sx={{width:56,height:56 }} src={rene}/>
+                <h2 style={{marginTop:"10px"}}>Prasang Maheshwari</h2>
                 </Stack>
                 <Button onClick={expand}>Create Post</Button>
                 </div>
@@ -209,8 +210,8 @@ const Form = () => {
             <Stack direction="column" spacing={2}>
                 <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                 <Stack direction="row" spacing={2}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" sx={{width:56,height:56 }}/>
-                <h2 style={{marginTop:"10px"}}>Name</h2>
+                <Avatar alt="Remy Sharp" src={rene} sx={{width:56,height:56 }}/>
+                <h2 style={{marginTop:"10px"}}>Prasang Maheshwari</h2>
                 </Stack>
                 <Button onClick={expand}>collapse</Button>
                 </div>
