@@ -59,8 +59,12 @@ const Home =  (props) => {
         history.push('/payment')
     }
 
-    function borrow(x){
-        localStorage.setItem('appliedPost', x)
+    function borrow(postId , Title , itemCategory , name , description){
+        localStorage.setItem('appliedPost', postId)
+        localStorage.setItem('appliedTitle',Title)
+        localStorage.setItem('applieditemCategory', itemCategory)
+        localStorage.setItem('appliedauthorName', name)
+        localStorage.setItem('appliedDescription',description)
         history.push('/apply')
     }
     
@@ -118,7 +122,7 @@ const Home =  (props) => {
                     {res.postType === 'sell' ?
                     <Button variant="contained" align="right" onClick={() => paymentGateway(res.postId)}>Buy </Button> :
                     <>
-                    <Button variant="contained" align="right" onClick={() => borrow(res.postId)}>Apply </Button>
+                    <Button variant="contained" align="right" onClick={() => borrow(res.postId , res.Title , res.itemCategory , res.name , res.Description)}>Apply </Button>
                     
                     </>
                     }
