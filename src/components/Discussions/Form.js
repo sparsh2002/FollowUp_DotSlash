@@ -79,7 +79,8 @@ const Form = () => {
         itemCategory: '',
         Duration: new Date(),
         Title: '',
-        Description: ''
+        Description: '',
+        imageUrl: ''
     })
 
     function SavePost(){
@@ -128,13 +129,13 @@ const Form = () => {
         // console.log('submitted')
     }
     function change(e){
-        // console.log(e.target.value)
+        console.log(e.target.value)
         const { name, value } = e.target
         setData({
             ...data,
             [name]: value
         })
-        // console.log(data)
+        console.log(data)
     }
 
     function checkbox(e){
@@ -188,6 +189,9 @@ const Form = () => {
                 value={data.Description}
                 onChange={change}
                 />
+
+                <input type ='file' onChange={change} name = 'imageUrl'/>
+                
 
                 <FormControl component="fieldset">
                 <FormLabel component="legend">Post Type</FormLabel>

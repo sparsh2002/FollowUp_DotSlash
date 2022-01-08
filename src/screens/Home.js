@@ -48,6 +48,7 @@ function GetData(){
 
 const Home =  () => {
     const data = FetchPrevPosts()
+    
     // const userData = GetData()
     // console.log(userData[0].name)    
     return ( 
@@ -61,19 +62,39 @@ const Home =  () => {
             {
                 data ? (
                     data.map((res,i ) => 
-                    <Box sx={{ m:2, p:2 }}>
-                    <Grid direction="column" spacing={2} align="left">
-                    <Stack direction="row" spacing={2}>
+                    <Box sx={{ m:3, p:4, border: '2px solid #ccc', borderRadius: '40px' }}>
+                    <Stack direction="column" spacing={2} align="left">
+                    <Stack direction="row" spacing={2} style={{ alignItems: 'center'}}>
                     <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
-                    <p>{data.name}</p>
+                    <p>{res.name}</p>
                     </Stack>
-                    <div style={{ backgroundColor:'red' }}>Sell</div>
-                    <Typography>{data.title}</Typography>
-                    <Typography>{data.Description}</Typography>
-                    
-                    <Button variant="contained" align="right">Apply</Button>
+                    {res.postType === 'sell' ?
+                    <div style={{ backgroundColor:'red', width:'70px', color:'white', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>For Sale</div> :
+                    <div style={{ backgroundColor:'green', width:'70px', color:'white', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>To Lend</div>
 
-                    </Grid>
+                    }
+                    <h2>{res.Title}</h2>
+                    <Typography variant="p">{res.Description}</Typography>
+                    <div>
+                        <img src={res.imageUrl} />
+                    </div>
+                    {
+                        res.postType === 'sell' ? <div style={{ display: 'flex' }}>
+                            <h3>Sale Price: </h3>
+                            <h4> ₹ {res.price}</h4>
+                        </div> : <div style={{ display: 'flex' }}>
+                            <h3>Return Date: </h3>
+                            <h4 > {res.duration}</h4>
+                        </div> 
+                    }
+                    <div style={{ display: 'flex' }}>
+                    <h3>Contact Details: </h3>
+                    <h4>&nbsp;&nbsp;+917398816950</h4>
+                    </div>
+                    <div style={{ display: 'flex', justifyContent: 'right'}}>
+                    <Button variant="contained" align="right">Apply {res.applicationNumber}</Button>
+                    </div>
+                    </Stack>
                     </Box>
                     )
                 ) : " "
