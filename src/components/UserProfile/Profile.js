@@ -107,7 +107,7 @@ const Profile = () => {
             <Grid container direction="row" className={classes.box} justifyContent="space-around">
             <Grid item direction="column" >
 
-                <p className={classes.text}><b>{userData?  userData[0].name : " "}</b><br />Info</p>
+                <p className={classes.text}><b>{userData?  userData[0]?.name : " "}</b><br />Info</p>
 
                 <p className={classes.text}><b>Name</b><br />Info</p>
                 <p className={classes.text}><b>Name</b><br />Info</p>
