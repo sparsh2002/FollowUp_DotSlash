@@ -15,51 +15,51 @@ import Borrow from './Borrow'
 import Lend from './Lend'
 
 
-const useStyles = makeStyles(theme => ({
+// const useStyles = makeStyles(theme => ({
 
-    profileCard: {
-      display: "flex",
-      flexDirection: 'column',
-      justifyContent: 'center',
-      alignItems: 'center',
-      padding: theme.spacing(2),
-      border: '1px solid #000',
+//     profileCard: {
+//       display: "flex",
+//       flexDirection: 'column',
+//       justifyContent: 'center',
+//       alignItems: 'center',
+//       padding: theme.spacing(2),
+//       border: '1px solid #000',
   
   
-    },
-    box: {
-      border: '1px solid #000'
-    },
-    textCenter: {
-      display: "flex",
-      flexDirection: 'column',
-      justifyContent: 'center',
-      alignItems: 'center',
-      fontSize: '15px',
-    },
-    text: {
-      margin: '30px 0px'
-    },
-    btn: {
-      fontSize: '15px'
-    },
+//     },
+//     box: {
+//       border: '1px solid #000'
+//     },
+//     textCenter: {
+//       display: "flex",
+//       flexDirection: 'column',
+//       justifyContent: 'center',
+//       alignItems: 'center',
+//       fontSize: '15px',
+//     },
+//     text: {
+//       margin: '30px 0px'
+//     },
+//     btn: {
+//       fontSize: '15px'
+//     },
   
-    gridclass: {
+//     gridclass: {
   
-      display: 'block',
+//       display: 'block',
   
-      margin: 'auto',
+//       margin: 'auto',
   
   
   
-    }
-  }));
+//     }
+//   }));
 
 const UserProfile = () => {
     const [page,setpage] = useState(<Profile />)
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
-    const classes = useStyles();
+    // const classes = useStyles();
     const status = localStorage.getItem('profilepage')
     var val = <Profile />
     function TogglePage(x){
@@ -80,7 +80,7 @@ const UserProfile = () => {
     
     return (
         <div>
-            <h1>This is UserProfile Page</h1>
+            {/* <h1>This is UserProfile Page</h1> */}
             <Drawer change = {TogglePage} />
             {
                 page

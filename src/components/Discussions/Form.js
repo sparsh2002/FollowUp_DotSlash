@@ -1,4 +1,5 @@
 import React  from 'react'
+import { makeStyles} from "@material-ui/core/styles";
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
@@ -38,6 +39,13 @@ const MenuProps = {
   },
 };
 
+const useStyles = makeStyles(theme => ({
+    paper: {
+      display: 'block',
+      margin: 'auto',
+      }
+      }));
+
 const names = [
   'Books',
   'Electronics',
@@ -72,7 +80,9 @@ function GetData(){
 const Form = () => {
     const userId = localStorage.getItem('userId')
     const userData = GetData();
+    const classes = useStyles();
     const [isChecked, setisChecked] = useState(false)
+    const [imageUrl, setimageUrl] = useState('')
     const [data, setData] = useState({
         postType: 'NA',
         price: 'NA',
@@ -98,7 +108,8 @@ const Form = () => {
             itemCategory: data.itemCategory,
             Duration: data.Duration,
             Title: data.Title,
-            Description: data.Description
+            Description: data.Description,
+            imageUrl:`/images/${userId}/items/${postId}`
         })
 
         firebase.firestore()
@@ -113,8 +124,17 @@ const Form = () => {
             itemCategory: data.itemCategory,
             Duration: data.Duration,
             Title: data.Title,
-            Description: data.Description
+            Description: data.Description,
+            imageUrl:`/images/${userId}/items/${postId}`
         })
+
+        // Added image to firebase storage
+
+        firebase
+        .storage()
+        .ref(`/images/${userId}/items/${postId}`)
+        .put(imageUrl)
+        .on("state_changed" , alert("Profile Image Uploaded") , alert);
         
 
         setData({
@@ -125,6 +145,7 @@ const Form = () => {
             Title: '',
             Description: ''
         })
+        setimageUrl('')
 
         // console.log('submitted')
     }
@@ -161,11 +182,11 @@ const Form = () => {
 
     return (
         <>
-            <Paper sx={{ m:2, p:2 }}>
+            <Paper sx={{ m:2, p:2, boxShadow:2}} >
             <Stack direction="column" spacing={2}>
                 <Stack direction="row" spacing={2}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
-                <p>name</p>
+                <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" sx={{width:56,height:56 }}/>
+                <h2 style={{marginTop:"10px"}}>Name</h2>
                 </Stack>
                 <TextField
                 id="standard-textarea"
@@ -190,7 +211,7 @@ const Form = () => {
                 onChange={change}
                 />
 
-                <input type ='file' onChange={change} name = 'imageUrl'/>
+                <input type ='file' onChange={e => setimageUrl(e.target.files[0])} />
                 
 
                 <FormControl component="fieldset">
@@ -267,7 +288,7 @@ const Form = () => {
                 )
             }
 
-                <Button variant="contained" align="right" onClick={SavePost}>Post</Button>
+                <Button variant="contained" align="right"  onClick={SavePost}>Post</Button>
 
             </Stack>
         </Paper>
