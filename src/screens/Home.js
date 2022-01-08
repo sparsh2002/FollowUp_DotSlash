@@ -11,6 +11,7 @@ import Modal from '@mui/material/Modal';
 
 import Form from '../components/Discussions/Form';
 import Comments from '../components/Discussions/Comments';
+import PostView from '../components/Discussions/PostView';
 
 
 function FetchPrevPosts() {
@@ -48,14 +49,31 @@ function GetData() {
     return data
 }
 
+function GetImage(imageUrl) {
+    const [profilePath, setprofilePath] =useState('')
+    useEffect(() => {
+        firebase
+        .storage()
+        .ref(`${imageUrl}`)
+        .getDownloadURL()
+        .then(fireBaseUrl => {
+          setprofilePath(fireBaseUrl);
+        });
+    }, [])
+    return profilePath
+  }
 
 const Home = (props) => {
 
     const { history } = props
     const data = FetchPrevPosts()
-
-    function paymentGateway(x) {
-        localStorage.setItem('appliedPost', x)
+    
+    function paymentGateway(postId , Title , itemCategory , name , description){
+        localStorage.setItem('appliedPost', postId)
+        localStorage.setItem('appliedTitle',Title)
+        localStorage.setItem('applieditemCategory', itemCategory)
+        localStorage.setItem('appliedauthorName', name)
+        localStorage.setItem('appliedDescription',description)
         history.push('/payment')
     }
 
@@ -67,77 +85,78 @@ const Home = (props) => {
         localStorage.setItem('appliedDescription', description)
         history.push('/apply')
     }
-
+    var imagePath
     // const userData = GetData()
     // console.log(userData[0].name)    
-    return (
+    return ( 
+        
+        <div style={{ display: 'flex', flexDirection: 'column'}}>
 
-        <div style={{ display: 'flex', flexDirection: 'column' }}>
+        <Grid className='new-post'>
+            <Form />
+        </Grid>
+        <Grid container direction="column" className='previous-chats'>
+        
+            {
+                data ? (
+                    data.map((res,i ) => 
+                //     <Box sx={{ m:3, p:4, border: '2px solid #ccc', borderRadius: '40px' }}>
+                //     <Stack direction="column" spacing={2} align="left">
+                    
+                //     <Stack direction="row" spacing={2} style={{ alignItems: 'center'}}>
+                //     <Avatar alt="Remy Sharp" src={res.imageUrl} />
+                //     <p>{res.name}</p>
+                //     </Stack>
+                    
+                //     {
+                //     res.postType === 'sell' ?
+                //     <div style={{ backgroundColor:'red', width:'70px', color:'white', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>For Sale</div> :
+                //     <div style={{ backgroundColor:'green', width:'70px', color:'white', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>To Lend</div>
 
-            <Grid className='new-post'>
-                <Form />
-            </Grid>
-            <Grid container direction="column" className='previous-chats'>
+                //     }
+                //     <h2>{res.Title}</h2>
+                //     <Typography variant="p">{res.Description}</Typography>
 
-                {
-                    data ? (
-                        data.map((res, i) =>
-                            <Box sx={{ m: 3, p: 4, border: '2px solid #ccc', borderRadius: '15px' }}>
-                                <Stack direction="column" spacing={2} align="left">
+                //     <div>
+                //         <img src={res.imageUrl} />
+                //     </div>
 
-                                    <Stack direction="row" spacing={2} style={{ alignItems: 'center' }}>
-                                        <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
-                                        <h4>{res.name}</h4>
-                                    </Stack>
+                //     {
+                //         res.postType === 'sell' ? <div style={{ display: 'flex' }}>
+                //             <h3>Sale Price: </h3>
+                //             <h4> ₹ {res.price}</h4>
+                //         </div> : <div style={{ display: 'flex' }}>
+                //             <h3>Return Date: </h3>
+                //             <h4 > {res.duration}</h4>
+                //         </div> 
+                //     }
 
-                                    {
-                                        res.postType === 'sell' ?
-                                            <div style={{ backgroundColor: 'red', width: '70px', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>For Sale</div> :
-                                            <div style={{ backgroundColor: 'green', width: '70px', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>To Lend</div>
+                //     <div style={{ display: 'flex' }}>
+                //     <h3>Contact Details: </h3>
+                //     <h4>&nbsp;&nbsp;+917398816950</h4>
+                //     </div>
 
-                                    }
-                                    <h2>{res.Title}</h2>
-                                    <Typography variant="p">{res.Description}</Typography>
+                //     <div style={{ display: 'flex', justifyContent: 'right'}}>
+                //     {res.postType === 'sell' ?
+                //     <Button variant="contained" align="right" onClick={() => paymentGateway(res.postId , res.Title , res.itemCategory , res.name , res.Description)}>Buy </Button> :
+                //     <>
+                //     <Button variant="contained" align="right" onClick={() => borrow(res.postId , res.Title , res.itemCategory , res.name , res.Description)}>Apply </Button>
+                    
+                //     </>
+                //     }
+                //     </div>
+                    
+                //     <Comments
+                //         allComments={res.comments}                   
+                //      />
+                //     </Stack>
 
-                                    <div>
-                                        <img src={res.imageUrl} />
-                                    </div>
-
-                                    {
-                                        res.postType === 'sell' ? <div style={{ display: 'flex' }}>
-                                            <h3>Sale Price: </h3>
-                                            <h4> ₹ {res.price}</h4>
-                                        </div> : <div style={{ display: 'flex' }}>
-                                            <h3>Return Date: </h3>
-                                            <h4 > {res.duration}</h4>
-                                        </div>
-                                    }
-
-                                    <div style={{ display: 'flex' }}>
-                                        <h3>Contact Details: </h3>
-                                        <h4>&nbsp;&nbsp;+917398816950</h4>
-                                    </div>
-
-                                    <div style={{ display: 'flex', justifyContent: 'right' }}>
-                                        {res.postType === 'sell' ?
-                                            <Button variant="contained" align="right" onClick={() => paymentGateway(res.postId)}>Buy </Button> :
-                                            <>
-                                                <Button variant="contained" align="right" onClick={() => borrow(res.postId, res.Title, res.itemCategory, res.name, res.Description)}>Apply </Button>
-
-                                            </>
-                                        }
-                                    </div>
-
-                                    <Comments
-                                        allComments={res.comments}
-                                    />
-                                </Stack>
-
-                            </Box>
-                        )
-                    ) : " "
-                }
-            </Grid>
+                //     </Box>
+                //     )
+                // ) : " "
+                <PostView  data={res} /> ))  : " " 
+            }
+        </Grid>
 
         </div>
 

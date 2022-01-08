@@ -2,6 +2,7 @@ import './App.css';
 import {BrowserRouter as Router , Switch  , Route} from 'react-router-dom'
 import Home from './screens/Home';
 import UserProfile from './screens/UserProfile';
+import PostView from './components/Discussions/PostView';
 import Login from './screens/Login';
 import fire from './fire'
 import Header from './components/UI/matnavbar'
@@ -19,7 +20,7 @@ function App() {
             <Route exact path='/userprofile' component={UserProfile} />
             <Route exact path='/apply' component={Apply} />
             <Route exact path='/payment' component={Payment} />
-
+            <Route exact path='/postview' component={PostView} />
           </Switch>
         </Router>
     </div>
