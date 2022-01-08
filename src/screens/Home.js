@@ -5,6 +5,9 @@ import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import Avatar from '@mui/material/Avatar';
 import Form from '../components/Discussions/Form';
+import Stack from '@mui/material/Stack';
+import Button from '@mui/material/Button';
+import { Typography } from '@mui/material';
 
 
 function FetchPrevPosts(){
@@ -54,7 +57,22 @@ const Home =  () => {
         <div><h1>This is Home Screen</h1></div>
             {
                 data ? (
-                    data.map((res,i ) => <div key = {i}>{res.content}</div>)
+                    data.map((res,i ) => 
+                    <Box sx={{ m:2, p:2 }}>
+                    <Grid direction="column" spacing={2} align="left">
+                    <Stack direction="row" spacing={2}>
+                    <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+                    <p>{data.name}</p>
+                    </Stack>
+                    <div style={{ backgroundColor:'red' }}>Sell</div>
+                    <Typography>{data.title}</Typography>
+                    <Typography>{data.Description}</Typography>
+                    
+                    <Button variant="contained" align="right">Apply</Button>
+
+                    </Grid>
+                    </Box>
+                    )
                 ) : " "
             }
         </Grid>
