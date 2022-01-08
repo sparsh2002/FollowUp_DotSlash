@@ -49,18 +49,19 @@ const Home =  () => {
     // console.log(userData[0].name)    
     return ( 
         <div style={{ display: 'flex', flexDirection: 'column'}}>
-            
+
+        <Grid className='new-post'>
+            <Form />
+        </Grid>
         <Grid container direction="column" className='previous-chats'>
-        <div><h1>This is Home Screen</h1></div>
+        
             {
                 data ? (
                     data.map((res,i ) => <div key = {i}>{res.content}</div>)
                 ) : " "
             }
         </Grid>
-        <Grid className='new-post'>
-            <Form />
-        </Grid>
+
         </div>
 
      );
