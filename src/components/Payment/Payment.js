@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import '../../../../../globalcomps/PaymentGateway/Payments.css'
+import './Payment.css'
 import {Button} from '@material-ui/core'
 // import iphone from '../../assets/images/ecom/iphone.jpeg';
 // import macbook from '../../assets/images/ecom/macbook.jpeg';

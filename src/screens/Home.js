@@ -54,12 +54,14 @@ const Home =  (props) => {
     const { history } = props  
     const data = FetchPrevPosts()
     
-    function paymentGateway(){
+    function paymentGateway(x){
+        localStorage.setItem('appliedPost', x)
         history.push('/payment')
     }
 
-    function borrow(){
-        history.push('/borrow')
+    function borrow(x){
+        localStorage.setItem('appliedPost', x)
+        history.push('/apply')
     }
     
     // const userData = GetData()
@@ -114,9 +116,9 @@ const Home =  (props) => {
 
                     <div style={{ display: 'flex', justifyContent: 'right'}}>
                     {res.postType === 'sell' ?
-                    <Button variant="contained" align="right" onClick={paymentGateway}>Buy </Button> :
+                    <Button variant="contained" align="right" onClick={() => paymentGateway(res.postId)}>Buy </Button> :
                     <>
-                    <Button variant="contained" align="right" onClick={borrow}>Apply </Button>
+                    <Button variant="contained" align="right" onClick={() => borrow(res.postId)}>Apply </Button>
                     
                     </>
                     }
