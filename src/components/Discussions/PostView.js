@@ -7,7 +7,7 @@ import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import { Typography } from '@mui/material';
 import Modal from '@mui/material/Modal';
-
+import { Redirect } from 'react-router-dom';
 import firebase from 'firebase'
 import Comments from './Comments'
 function FetchPrevPosts(){
@@ -59,7 +59,7 @@ function GetImage(imageUrl) {
     return profilePath
 }
 const PostView = (props) => {
-    console.log(props.data)
+    // console.log(props.data)
     const { history } = props  
     const data = FetchPrevPosts()
     const imagePath = GetImage(props.data.imageUrl)
@@ -69,7 +69,9 @@ const PostView = (props) => {
         localStorage.setItem('applieditemCategory', itemCategory)
         localStorage.setItem('appliedauthorName', name)
         localStorage.setItem('appliedDescription',description)
-        history.push('/payment')
+        {<Redirect to="/payment" />}
+        return <Redirect to='/payment' />
+        // history.push('/payment')
     }
 
     function borrow(postId , Title , itemCategory , name , description){
@@ -78,7 +80,8 @@ const PostView = (props) => {
         localStorage.setItem('applieditemCategory', itemCategory)
         localStorage.setItem('appliedauthorName', name)
         localStorage.setItem('appliedDescription',description)
-        history.push('/apply')
+        return <Redirect to="/apply" />
+        // history.push('/apply')
     }
     return (
         <div>
@@ -120,7 +123,9 @@ const PostView = (props) => {
 
                     <div style={{ display: 'flex', justifyContent: 'right'}}>
                     {props.data.postType === 'sell' ?
-                    <Button variant="contained" align="right" onClick={() => paymentGateway(props.data.postId , props.data.Title , props.data.itemCategory , props.data.name , props.data.Description)}>Buy </Button> :
+                    <Button variant="contained" align="right" onClick={() => 
+                        paymentGateway(props.data.postId , props.data.Title , props.data.itemCategory , props.data.name , props.data.Description)
+                    }>Buy </Button> :
                     <>
                     <Button variant="contained" align="right" onClick={() => borrow(props.data.postId , props.data.Title , props.data.itemCategory , props.data.name , props.data.Description)}>Apply </Button>
                     
