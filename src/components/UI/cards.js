@@ -26,10 +26,10 @@ const useStyles = makeStyles({
         width: '85%',
     }
 })
-function Cards() {
+function Cards(props) {
 
-
-
+    const {data} = props
+    // console.log(data)
     const [open, setOpen] = useState(false);
     // const handleOpen = () => setOpen(true);
     // const handleClose = () => setOpen(false);
@@ -45,8 +45,8 @@ function Cards() {
     <div >
         <Card elevation={3} className={classes.card}>
             <CardHeader
-                title="Lorem ipsum dolor sit amet "   //Post title from the form
-                subheader="lorem ipsum dolor sit amet, consect consectetur adipisicing elit. Esse a assumenda in voluptatum reiciendis unde recusandae dolorem praesentium enim. Libero repellendus sunt accusantium labore commodi minima nisi laudantium maiores impedit!" //description from the form
+                title={data.title}  //Post title from the form
+                subheader={data.description}//description from the form
             />
 
             <CardActions className={classes.button}>
@@ -58,7 +58,7 @@ function Cards() {
                
 
             </CardActions>
-            {open ? <BasicModal open={open} /> : ''}
+            {open ? <BasicModal open={open} data={data} /> : ''}
         </Card>
     </div>
     )

@@ -11,18 +11,12 @@ function Borrow() {
             <Drawer />
             <Grid container spacing={3}>
                 <Grid item xs={12} sm={12} md={12} >
-                   
-                    <Cards/>
+                    <Cards data={{ title:'Borrowed' , description:"This section is used to Display the items you have placed for lending"}} />
+
                 </Grid>
 
                 <Grid item xs={12} sm={12} md={12} >
-                    
-                    <Cards/>
-                </Grid>
-
-                <Grid item xs={12} sm={12} md={12} >
-                   
-                    <Cards/>
+                    <Cards data={{ title:'Bought' , description:"This section is used to Display the items you have placed for lending"}} />
                 </Grid>
             </Grid>
         </div>

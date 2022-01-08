@@ -85,12 +85,10 @@ const Profile = () => {
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
     const classes = useStyles();
-
     const userData = GetData()
    
     return (
         <div>
-            <Drawer/>
             <Grid container direction='row' className={classes.gridfl}>
             <Grid sm={8} xs={12} direction='column' className={classes.gridclass}>
 

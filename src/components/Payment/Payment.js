@@ -26,7 +26,7 @@ function Payment() {
         firebase.firestore()
         .collection('user')
         .doc(userId)
-        .collection('borrow')
+        .collection('bought')
         .add({
             appliedPost,
             appliedauthorName,
