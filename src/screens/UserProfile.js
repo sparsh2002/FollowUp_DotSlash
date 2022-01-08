@@ -11,6 +11,8 @@ import { makeStyles, useTheme } from "@material-ui/core/styles";
 import { Button, Container, Grid, Typography } from '@material-ui/core'
 import { color } from '@mui/system';
 import Profile from '../components/UserProfile/Profile'
+import Borrow from './Borrow'
+import Lend from './Lend'
 
 
 const useStyles = makeStyles(theme => ({
@@ -54,21 +56,32 @@ const useStyles = makeStyles(theme => ({
   }));
 
 const UserProfile = () => {
-    const [page,setpage] = useState(<Profile />);
+    const [page,setpage] = useState(<Profile />)
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
     const classes = useStyles();
     const status = localStorage.getItem('profilepage')
-    if(status==='profile'){
-        setpage(<Profile />)
-    }
-    // else if(status=='lend'){
+    var val = <Profile />
+    function TogglePage(x){
+        console.log(x)
         
-    // }
+        if(x=="profile"){
+            val  = <Profile />
+        }
+        else if(x=="lend"){
+            setpage(<Lend />)
+            // console.log('Hua')
+        }
+        else{
+            setpage(<Borrow />)
+        }
+        
+    }
+    
     return (
         <div>
             <h1>This is UserProfile Page</h1>
-            <Drawer />
+            <Drawer change = {TogglePage} />
             {
                 page
             }
