@@ -7,10 +7,7 @@ import Avatar from '@mui/material/Avatar';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import { Typography } from '@mui/material';
-import TextField from '@mui/material/TextField';
-import InputAdornment from '@mui/material/InputAdornment';
-import AccountCircle from '@mui/icons-material/AccountCircle';
-import Input from '@mui/material/Input';
+import Modal from '@mui/material/Modal';
 
 import Form from '../components/Discussions/Form';
 import Comments from '../components/Discussions/Comments';
@@ -51,18 +48,24 @@ function GetData(){
     return data
 }
 
- 
 
-const Home =  () => {
-    
+const Home =  (props) => {
+
+    const { history } = props  
     const data = FetchPrevPosts()
-    console.log(data)
-
     
+    function paymentGateway(){
+        history.push('/payment')
+    }
+
+    function borrow(){
+        history.push('/borrow')
+    }
     
     // const userData = GetData()
     // console.log(userData[0].name)    
     return ( 
+        
         <div style={{ display: 'flex', flexDirection: 'column'}}>
 
         <Grid className='new-post'>
@@ -110,7 +113,13 @@ const Home =  () => {
                     </div>
 
                     <div style={{ display: 'flex', justifyContent: 'right'}}>
-                    <Button variant="contained" align="right">Apply {res.applicationNumber}</Button>
+                    {res.postType === 'sell' ?
+                    <Button variant="contained" align="right" onClick={paymentGateway}>Buy </Button> :
+                    <>
+                    <Button variant="contained" align="right" onClick={borrow}>Apply </Button>
+                    
+                    </>
+                    }
                     </div>
                     
                     <Comments
