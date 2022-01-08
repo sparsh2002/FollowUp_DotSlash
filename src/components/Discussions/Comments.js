@@ -12,7 +12,20 @@ import Box from '@mui/material/Box';
 import { useState,useEffect } from 'react';
 import firebase from 'firebase'
 
-
+function GetImage(imageUrl) {
+    const [profilePath, setprofilePath] = React.useState('')
+    React.useEffect(() => {
+        firebase
+        .storage()
+        .ref(`${imageUrl}`)
+        .getDownloadURL()
+        .then(fireBaseUrl => {
+          setprofilePath(fireBaseUrl);
+        });
+    }, [])
+    return profilePath
+  }
+  
 
 const Comments = (props) => {
     
@@ -23,8 +36,8 @@ const Comments = (props) => {
         
         setComment('')
     }
+    var imagePath
     
-
 
     return (
         <div>
@@ -34,7 +47,7 @@ const Comments = (props) => {
                             { props.allComments ? (
                              (props.allComments).map((res,i ) =>
                             <Stack direction="row" spacing={2} style = {{ display: "flex", alignItems: "center" }}>
-                            <Avatar alt="Remy Sharp" src={res.imageUrl} size="small" />
+                            <Avatar alt="Remy Sharp" src={imagePath} size="small" />
                             <div>
                             <p><b>{res.name}</b><br/>{res.content}</p>
                             
