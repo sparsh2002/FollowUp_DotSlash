@@ -195,8 +195,8 @@ const Form = () => {
                 <Paper sx={{ p:3, boxShadow:2, width:'80%'}} >
                 <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                 <Stack direction="row" spacing={2}>
-                <Avatar alt="Remy Sharp" src={rene} sx={{width:56,height:56 }} src={rene}/>
-                <h2 style={{marginTop:"10px"}}>Prasang Maheshwari</h2>
+                <Avatar alt="Remy Sharp" src={rene} sx={{width:56,height:56 }} />
+                <h2 style={{marginTop:"10px"}}>Name</h2>
                 </Stack>
                 <Button onClick={expand}>Create Post</Button>
                 </div>
@@ -210,8 +210,8 @@ const Form = () => {
             <Stack direction="column" spacing={2}>
                 <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                 <Stack direction="row" spacing={2}>
-                <Avatar alt="Remy Sharp" src={rene} sx={{width:56,height:56 }}/>
-                <h2 style={{marginTop:"10px"}}>Prasang Maheshwari</h2>
+                <Avatar alt="Remy Sharp" sx={{width:56,height:56 }}/>
+                <h2 style={{marginTop:"10px"}}>Name</h2>
                 </Stack>
                 <Button onClick={expand}>collapse</Button>
                 </div>

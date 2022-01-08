@@ -21,7 +21,7 @@ function App() {
      
     <div className="App">
     
-        {userId? <Router>
+         <Router>
           <Header />
           <Switch>
             <Route exact path='/' component={Home} />
@@ -31,11 +31,8 @@ function App() {
             <Route exact path='/payment' component={Payment} />
             <Route exact path='/postview' component={PostView} />
           </Switch>
-        </Router> : 
-        <Router>
-        <Route path='/' component={Login} />
-        </Router>
-        }
+        </Router> 
+        
     </div> 
      
     
