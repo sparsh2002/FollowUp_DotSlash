@@ -8,22 +8,37 @@ import fire from './fire'
 import Header from './components/UI/matnavbar'
 import Apply from './screens/Apply'
 import Payment from './components/Payment/Payment'
+import firebase from 'firebase'
 const auth  = fire.auth()
+
+
+const userId = localStorage.getItem('userId')
+
 function App() {
-  return (
+  const user = firebase.auth().currentUser
+  console.log(user)
+  return ( 
+     
     <div className="App">
-        <Router>
+    
+        {userId? <Router>
           <Header />
           <Switch>
             <Route exact path='/' component={Home} />
-            <Route exact path='/login' component={Login} />
+            <Route path='/login' component={Login} />
             <Route exact path='/userprofile' component={UserProfile} />
             <Route exact path='/apply' component={Apply} />
             <Route exact path='/payment' component={Payment} />
             <Route exact path='/postview' component={PostView} />
           </Switch>
+        </Router> : 
+        <Router>
+        <Route path='/' component={Login} />
         </Router>
-    </div>
+        }
+    </div> 
+     
+    
   );
 }
 

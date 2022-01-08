@@ -1,6 +1,7 @@
 import React , {useEffect , useState} from 'react'
 import firebase from 'firebase'
 import { Button } from '@material-ui/core'
+import tick from '../assets/images/tick.png'
 const Apply = () => {
     const appliedPost = localStorage.getItem('appliedPost')
     const appliedauthorName = localStorage.getItem('appliedauthorName')
@@ -36,6 +37,7 @@ const Apply = () => {
     }
     return (
         <div>
+        <img src={tick} width="200px" height="200px"/>
          <p> Purchase Id:{appliedPost}</p>
          <p>Author : {appliedauthorName}</p>
          <p>Title : {appliedTitle}</p>
