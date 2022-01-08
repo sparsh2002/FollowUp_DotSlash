@@ -10,19 +10,20 @@ function Lend() {
             <Drawer/>
             <Grid container spacing={3}>
                 <Grid item xs={12} sm={12} md={12} >
-                   
-                    <Cards/>
+                    <Cards data={{ title:'Lend' , description:"This section is used to Display the items you have placed for lending"}} />
                 </Grid>
 
                 <Grid item xs={12} sm={12} md={12} >
                     
-                    <Cards/>
+                <Cards data={{ title:'Sold' , description:"This section is used to Display the items you have Sold"}} />
+
                 </Grid>
 
-                <Grid item xs={12} sm={12} md={12} >
+                {/* <Grid item xs={12} sm={12} md={12} >
                    
-                    <Cards/>
-                </Grid>
+                <Cards data={{ title:'Lend' , description:"This section is used to Display the items you have placed for lending"}} />
+
+                </Grid> */}
             </Grid>
 
 
