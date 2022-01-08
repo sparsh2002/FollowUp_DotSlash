@@ -51,7 +51,18 @@ function GetData(){
     return data
 }
 
- 
+function ApplyForProduct(){
+    const userId = localStorage.getItem('userId')
+
+    // add to lender
+    
+
+
+    // add to applyer
+    
+
+    
+}
 
 const Home =  () => {
     
