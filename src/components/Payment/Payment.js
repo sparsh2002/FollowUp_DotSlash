@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import './Payment.css'
 import {Button} from '@material-ui/core'
+import firebase from 'firebase'
 // import iphone from '../../assets/images/ecom/iphone.jpeg';
 // import macbook from '../../assets/images/ecom/macbook.jpeg';
 const iphone = 'https://source.unsplash.com/100x100/?iphone'
@@ -11,6 +12,38 @@ function SaveData(acknowleged) {
 }
 
 function Payment() {
+  const appliedPost = localStorage.getItem('appliedPost')
+    const appliedauthorName = localStorage.getItem('appliedauthorName')
+    const appliedDescription = localStorage.getItem('appliedDescription')
+    const applieditemCategory = localStorage.getItem('applieditemCategory')
+    const appliedTitle = localStorage.getItem('appliedTitle')
+    const userId = localStorage.getItem('userId')
+    
+
+    async function Order(){
+        // add to user who borrowed the item
+        firebase.firestore()
+        .collection('user')
+        .doc(userId)
+        .collection('borrow')
+        .add({
+            appliedPost,
+            appliedauthorName,
+            appliedDescription,
+            applieditemCategory,
+            appliedTitle
+        })
+
+        // deleting the instance from the discussion sectoin
+
+        const snapshot1 = await firebase.firestore()
+            .collection('discussion')
+            .limit(1)
+            .where('postId',"==" , appliedPost)
+            .get()
+
+        snapshot1.docs[0].ref.delete();   
+    }
   const phonePrice = 67999;
   const laptopPrice = 125000;
 
@@ -74,12 +107,16 @@ function Payment() {
   };
   return (
     <div className="App">
-      {/* <div className="buttons"> */}
-              <Button onClick={() => displayRazorpay(phonePrice)} color="primary">
-                Proceed to Pay
-              </Button>
-      {/* </div> */}
-      
+      <p> Purchase Id:{appliedPost}</p>
+         <p>Author : {appliedauthorName}</p>
+         <p>Title : {appliedTitle}</p>
+         <p>itemCategory: {applieditemCategory}</p>
+         <p>Description : {appliedDescription}</p>
+      <Button onClick={() => displayRazorpay(phonePrice)} color="primary">
+        Proceed to Pay
+      </Button>
+      <h4>First Complete the payment Then Move to the Confirm Order</h4>
+      <Button onClick={Order}>Confirm Order</Button>
     </div>
   );
 }

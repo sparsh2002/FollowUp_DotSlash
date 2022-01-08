@@ -10,7 +10,8 @@ const Apply = () => {
     const userId = localStorage.getItem('userId')
     
 
-    function Order(){
+    async function Order(){
+        // add to user who borrowed the item
         firebase.firestore()
         .collection('user')
         .doc(userId)
@@ -22,6 +23,16 @@ const Apply = () => {
             applieditemCategory,
             appliedTitle
         })
+
+        // deleting the instance from the discussion sectoin
+
+        const snapshot1 = await firebase.firestore()
+            .collection('discussion')
+            .limit(1)
+            .where('postId',"==" , appliedPost)
+            .get()
+
+        snapshot1.docs[0].ref.delete();   
     }
     return (
         <div>

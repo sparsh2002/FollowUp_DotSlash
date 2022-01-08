@@ -54,8 +54,12 @@ const Home =  (props) => {
     const { history } = props  
     const data = FetchPrevPosts()
     
-    function paymentGateway(x){
-        localStorage.setItem('appliedPost', x)
+    function paymentGateway(postId , Title , itemCategory , name , description){
+        localStorage.setItem('appliedPost', postId)
+        localStorage.setItem('appliedTitle',Title)
+        localStorage.setItem('applieditemCategory', itemCategory)
+        localStorage.setItem('appliedauthorName', name)
+        localStorage.setItem('appliedDescription',description)
         history.push('/payment')
     }
 
@@ -120,7 +124,7 @@ const Home =  (props) => {
 
                     <div style={{ display: 'flex', justifyContent: 'right'}}>
                     {res.postType === 'sell' ?
-                    <Button variant="contained" align="right" onClick={() => paymentGateway(res.postId)}>Buy </Button> :
+                    <Button variant="contained" align="right" onClick={() => paymentGateway(res.postId , res.Title , res.itemCategory , res.name , res.Description)}>Buy </Button> :
                     <>
                     <Button variant="contained" align="right" onClick={() => borrow(res.postId , res.Title , res.itemCategory , res.name , res.Description)}>Apply </Button>
                     
