@@ -22,8 +22,22 @@ const style = {
 
 
 export default function BasicModal(props) {
-  // console.log(props.data.list.lendData)
-  const lend = props.data.list.lendData
+  const type = props.type
+  var printable
+  if(type=='lend'){
+    printable = props.data.list.show.lendData
+  }
+  else if(type=='sold'){
+    printable = props.data.list.show.soldData
+  }
+  else if(type=='borrow'){
+    printable = props.data.list.show.borrowData
+  }
+  else if(type=='bought'){
+    printable = props.data.list.show.boughtData
+  }
+  
+  // console.log(printable)
   const [open, setOpen] = React.useState(props.open);
   const {history}=props;
   const handleOpen = () => setOpen(props.open);
@@ -43,7 +57,7 @@ export default function BasicModal(props) {
       >
         <Box sx={style}>
             {
-              lend?.map((res )=><div>
+              printable?.map((res )=><div>
                 <h4>{res.Title}</h4>
                 <p>{res.name}</p>
                 <p>{res.itemCategory}</p>

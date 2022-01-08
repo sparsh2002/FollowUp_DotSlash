@@ -58,7 +58,7 @@ function Cards(props) {
                
 
             </CardActions>
-            {open ? <BasicModal open={open} data={data} /> : ''}
+            {open ? <BasicModal open={open} data={data} type = {data.type}/> : ''}
         </Card>
     </div>
     )
