@@ -87,8 +87,8 @@ const PostView = (props) => {
     }
     return (
         <div>
-            <Box sx={{ m:3, p:4, border: '2px solid #ccc', borderRadius: '40px' }}>
-                    <Stack direction="column" spacing={2} align="left">
+            <Box sx={{ m:3, p:4, border: '2px solid #ccc', borderRadius: '40px', width: '80%', boxShadow: " -1px 3px 5px #888888" }}>
+                    <Stack direction="column" spacing={1} align="left">
                     
                     <Stack direction="row" spacing={2} style={{ alignItems: 'center'}}>
                     <Avatar alt="Remy Sharp" src="" />

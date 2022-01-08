@@ -56,6 +56,7 @@ const names = [
 
 function GetData(){
     const [data, setdata] = useState([])
+    
     let id = localStorage.getItem('userId')
     useEffect(() => {
         const fetched = firebase
@@ -81,6 +82,7 @@ const Form = () => {
     const userId = localStorage.getItem('userId')
     const userData = GetData();
     const classes = useStyles();
+    const [collapse, setCollapse] = useState(true)
     const [isChecked, setisChecked] = useState(false)
     const [imageUrl, setimageUrl] = useState('')
     const [data, setData] = useState({
@@ -180,14 +182,38 @@ const Form = () => {
         // console.log(data)
     }
 
+    function expand(){
+        setCollapse(!collapse)
+    }
+
     return (
+        <div>
+        { collapse  ? 
+                (
+                    <>
+                <Paper sx={{ p:3, boxShadow:2, width:'80%'}} >
+                <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                <Stack direction="row" spacing={2}>
+                <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" sx={{width:56,height:56 }} />
+                <h2 style={{marginTop:"10px"}}>Name</h2>
+                </Stack>
+                <Button onClick={expand}>Create Post</Button>
+                </div>
+                </Paper>
+                </>
+
+                )
+             :
         <>
-            <Paper sx={{ m:2, p:2, boxShadow:2}} >
+            <Paper sx={{ p:3, boxShadow:2, width:'80%' }} >
             <Stack direction="column" spacing={2}>
+                <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                 <Stack direction="row" spacing={2}>
                 <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" sx={{width:56,height:56 }}/>
                 <h2 style={{marginTop:"10px"}}>Name</h2>
                 </Stack>
+                <Button onClick={expand}>collapse</Button>
+                </div>
                 <TextField
                 id="standard-textarea"
                 label="Title"
@@ -293,6 +319,8 @@ const Form = () => {
             </Stack>
         </Paper>
         </>
+        }
+        </div>
     )
 }
 

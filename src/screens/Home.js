@@ -92,10 +92,10 @@ const Home = (props) => {
         
         <div style={{ display: 'flex', flexDirection: 'column'}}>
 
-        <Grid className='new-post'>
+        <Grid className='new-post' align='center'>
             <Form />
         </Grid>
-        <Grid container direction="column" className='previous-chats'>
+        <Grid container direction="column" className='previous-chats' align="center">
         
             {
                 data ? (
