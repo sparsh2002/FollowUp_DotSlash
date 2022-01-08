@@ -1,4 +1,5 @@
 import React  from 'react'
+import { makeStyles} from "@material-ui/core/styles";
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
@@ -38,6 +39,13 @@ const MenuProps = {
   },
 };
 
+const useStyles = makeStyles(theme => ({
+    paper: {
+      display: 'block',
+      margin: 'auto',
+      }
+      }));
+
 const names = [
   'Books',
   'Electronics',
@@ -72,6 +80,7 @@ function GetData(){
 const Form = () => {
     const userId = localStorage.getItem('userId')
     const userData = GetData();
+    const classes = useStyles();
     const [isChecked, setisChecked] = useState(false)
     const [data, setData] = useState({
         postType: 'NA',
@@ -161,11 +170,11 @@ const Form = () => {
 
     return (
         <>
-            <Paper sx={{ m:2, p:2 }}>
+            <Paper sx={{ m:2, p:2, boxShadow:2}} >
             <Stack direction="column" spacing={2}>
                 <Stack direction="row" spacing={2}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
-                <p>name</p>
+                <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" sx={{width:56,height:56 }}/>
+                <h2 style={{marginTop:"10px"}}>Name</h2>
                 </Stack>
                 <TextField
                 id="standard-textarea"
@@ -267,7 +276,7 @@ const Form = () => {
                 )
             }
 
-                <Button variant="contained" align="right" onClick={SavePost}>Post</Button>
+                <Button variant="contained" align="right"  onClick={SavePost}>Post</Button>
 
             </Stack>
         </Paper>

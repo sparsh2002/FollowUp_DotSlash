@@ -28,6 +28,10 @@ const useStyles = makeStyles(theme => ({
   menuButton: {
     marginRight: theme.spacing(2)
   },
+  namelink:{
+    textDecoration:"none",
+    marginBottom:"10px",
+  },
   title: {
       display: "flex",
       marginTop: "15px",
@@ -37,7 +41,11 @@ const useStyles = makeStyles(theme => ({
     }
   },
   name: {
-    marginLeft: "15px"
+    // marginLeft: "15px",
+    color:"#3F51B5",
+    display: "block",
+    margin:"auto",
+    
   },
   headerOptions: {
     display: "flex",
@@ -96,11 +104,11 @@ const Header = props => {
     <div className={classes.root}>
       <AppBar position="static" color="transparent" elevation={0} >
         <Toolbar className={classes.justify}>    
-        <Link to="/">
+        <Link to="/" className={classes.namelink}>
           <div className={classes.title}>
                     {/* <img src={logo} alt='logo-img' style={{width:'40px' , height:'43px'}} /> */}
                     <div className={classes.name}>
-                        <p >Boland</p>
+                        <h3>FollowUp</h3>
                     </div>
                 </div>   
           </Link>     
@@ -158,14 +166,14 @@ const Header = props => {
               {
                 user ? <div style={{ marginLeft: '5px'}}>
                   {/* <Link to='/userprofile' style={{textDecoration:'none' , color:'black'}}>PROFILE</Link> */}
-                  <Button onClick={handleLogout} variant='contained' color='primary' >Logout</Button> 
+                  <Button onClick={handleLogout} variant='contained' size="small" color='primary' >Logout</Button> 
                 </div>: <div>
-                  <Button className={classes.liitem} variant="contained" color="primary"
+                  <Button className={classes.liitem} size="small" variant="contained" color="primary"
                 onClick={() => handleButtonClick("/login")}
               >
                 Sign in
                 </Button>
-                <Button className={classes.liitem} variant="outlined" color="primary"
+                <Button className={classes.liitem} size="small" variant="outlined" color="primary"
                 onClick={() => handleButtonClick("/signup")}
               >
                 Register

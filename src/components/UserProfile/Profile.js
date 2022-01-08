@@ -9,7 +9,9 @@ import { makeStyles, useTheme } from "@material-ui/core/styles";
 import { Button, Container, Grid, Typography } from '@material-ui/core'
 import { color } from '@mui/system';
 
+
 import firebase from 'firebase'
+import Drawer from '../UI/drawer';
 function GetData(){
     const [data, setdata] = useState([])
     let id = localStorage.getItem('userId')
@@ -35,18 +37,16 @@ function GetData(){
 
 const useStyles = makeStyles(theme => ({
 
-    profileCard: {
+  
+    box: {
+      
       display: "flex",
       flexDirection: 'column',
       justifyContent: 'center',
       alignItems: 'center',
-      padding: theme.spacing(2),
-      border: '1px solid #000',
-  
-  
-    },
-    box: {
-      border: '1px solid #000'
+      padding: theme.spacing(1),
+      borderRadius:"5px",
+      backgroundColor:"#DCDCDC"
     },
     textCenter: {
       display: "flex",
@@ -54,9 +54,10 @@ const useStyles = makeStyles(theme => ({
       justifyContent: 'center',
       alignItems: 'center',
       fontSize: '15px',
+      
     },
     text: {
-      margin: '30px 0px'
+      margin: '15px 0px'
     },
     btn: {
       fontSize: '15px'
@@ -65,11 +66,17 @@ const useStyles = makeStyles(theme => ({
     gridclass: {
   
       display: 'block',
-  
+      
       margin: 'auto',
   
   
   
+    },
+    gridfl: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent:'center',
+        
     }
   }));
 
@@ -83,49 +90,40 @@ const Profile = () => {
    
     return (
         <div>
+            <Drawer/>
+            <Grid container direction='row' className={classes.gridfl}>
             <Grid sm={8} xs={12} direction='column' className={classes.gridclass}>
 
         <Stack
             direction={{ xs: 'column', md: 'row' }}
             spacing={{ xs: 2 }}
         >
+           
 
-            <Grid className={classes.profileCard} >
-            <Avatar sx={{ height: '100px', width: '100px' }} />
-            <p className={classes.textCenter}><b>Diana Cooper</b><br />Daina@gmail.com</p>
-            <Stack
-                direction="row"
-                divider={<Divider orientation="vertical" flexItem />}
-                spacing={2}
-            >
-                <p className={classes.textCenter}><b>5</b><br />Left</p>
-                <p className={classes.textCenter}><b>15</b><br />Past</p>
-            </Stack>
-            {/* <Button color="primary" variant='contained' size='small' onClick={toggleProfile}>Edit Profile</Button> */}
-            </Grid>
+            
 
             <Grid container direction="row" className={classes.box} justifyContent="space-around">
             <Grid item direction="column" >
 
-                <p className={classes.text}><b>{userData?  userData[0]?.name : " "}</b><br />Info</p>
+               
 
-                <p className={classes.text}><b>Name</b><br />Info</p>
-                <p className={classes.text}><b>Name</b><br />Info</p>
-                <p className={classes.text}><b>Name</b><br />Info</p>
+            <Avatar sx={{ height: '100px', width: '100px' }} style={{marginLeft:"15px", marginTop:"15px"}} />
+            <p className={classes.textCenter}><b>{userData?  userData[0]?.name : " "}</b><br />{userData?  userData[0]?.email : " "}</p>
+
             </Grid>
+            <Button color="primary" variant='contained' size='small' >Edit Profile</Button>
             <Grid item direction="column">
-                <p className={classes.text}><b>Name</b><br />Info</p>
-                <p className={classes.text}><b>Name</b><br />Info</p>
-            </Grid>
-            <Grid item direction="column">
-                <p className={classes.text}><b>Name</b><br />Info</p>
-                <p className={classes.text}><b>Name</b><br />Info</p>
+                <p className={classes.text}><b>InfoName</b><br />Info</p>
+                <p className={classes.text}><b>InfoName</b><br />Info</p>
+            
+                <p className={classes.text}><b>InfoName</b><br />Info</p>
+               
             </Grid>
             </Grid>
 
         </Stack>
         </Grid>
-
+        </Grid>
         </div>
     )
 }
