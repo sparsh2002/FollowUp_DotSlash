@@ -9,6 +9,29 @@ import { makeStyles, useTheme } from "@material-ui/core/styles";
 import { Button, Container, Grid, Typography } from '@material-ui/core'
 import { color } from '@mui/system';
 
+import firebase from 'firebase'
+function GetData(){
+    const [data, setdata] = useState([])
+    let id = localStorage.getItem('userId')
+    useEffect(() => {
+        const fetched = firebase
+        .firestore()
+        .collection('user')
+        .onSnapshot((snapshot) =>{
+            setdata(snapshot.docs.map((doc)=>doc.data()))
+            
+        })
+        
+    }, [])
+
+    for(var i=0 ; i<data.length ; i++){
+        if(data[i]['id']==id){
+            setdata(data[i])
+        }
+    }
+    return data
+}
+
 
 const useStyles = makeStyles(theme => ({
 
@@ -55,6 +78,9 @@ const Profile = () => {
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
     const classes = useStyles();
+
+    const userData = GetData()
+   
     return (
         <div>
             <Grid sm={8} xs={12} direction='column' className={classes.gridclass}>
@@ -80,6 +106,9 @@ const Profile = () => {
 
             <Grid container direction="row" className={classes.box} justifyContent="space-around">
             <Grid item direction="column" >
+
+                <p className={classes.text}><b>{userData?  userData[0].name : " "}</b><br />Info</p>
+
                 <p className={classes.text}><b>Name</b><br />Info</p>
                 <p className={classes.text}><b>Name</b><br />Info</p>
                 <p className={classes.text}><b>Name</b><br />Info</p>
